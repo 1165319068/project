@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <button id="xz">旋转90度</button>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = 600;
+        canvas.height = 500;
+        const rotate = 90;
+
+        // 画两条相交垂线做观察
+        // context.moveTo(0, canvas.height / 2);
+        // context.lineTo(canvas.width, canvas.height / 2);
+        // context.stroke();
+
+        // context.beginPath();
+        // context.moveTo(canvas.width / 2, 0);
+        // context.lineTo(canvas.width / 2, canvas.height);
+        // context.stroke();
+
+        // 1. 实例化Image对象
+        const img = new Image();
+        // 2. 给Image对象设置src属性
+        // img.setAttribute('crossOrigin', 'Anonymous');
+        // 3. 浏览器读取图片时间  需要等待图片读取完成
+        // var x = canvas.width/2; //画布宽度的一半
+        //     var y = canvas.height/2;//画布高度的一半
+        img.src = './0.png';
+        var x1=0
+        var y1=0
+        img.onload = () => {
+            // 4. 平移转换，改变画笔的原点位置为画布的中心点
+            context.drawImage(img,0,0);//绘制图片    
+             x1=img.width
+             y1=img.height
+        };
+
+        $('#xz').click(function(){
+            WeixinJSBridge.call('closeWindow');
+        })
+    </script>
+</body>
+
+</html>
